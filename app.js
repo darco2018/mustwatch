@@ -11,9 +11,10 @@ var moviesRouter = require('./routes/movies');
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-// db
+//app.set('views', path.join(__dirname, 'views'));
+app.use(express.static(__dirname + "/views"));
 
+// db
 const dbName = 'moviesDb';
 //dbTest.test(mongoose)
 mongoose.connect('mongodb://localhost:27017/' + dbName, {
