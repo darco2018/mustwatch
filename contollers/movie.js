@@ -18,14 +18,20 @@ exports.postMovie = (req, res) => {
 };
 
 exports.getMovie = (req, res) => {
-    Movie.findById(req.params.id)
+  Movie.findById(req.params.id)
     .then(found => res.json(found))
     .catch(err => res.json(err));
-}
+};
 
 exports.putMovie = (req, res) => {
-    Movie.findByIdAndUpdate(req.params.id, req.body, {new : true})
+  Movie.findByIdAndUpdate(req.params.id, req.body, { new: true })
     .then(found => res.json(found))
     .catch(err => res.json(err));
-}
+};
+
+exports.deleteMovie = (req, res) => {
+  Movie.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Movie deleted'))
+    .catch(err => res.json(err));
+};
 module.exports = exports;
