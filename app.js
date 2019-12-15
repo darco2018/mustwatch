@@ -7,7 +7,6 @@ var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var moviesRouter = require('./routes/movies');
-
 var app = express();
 
 // view engine setup
