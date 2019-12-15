@@ -1,9 +1,8 @@
 const express = require('express');
 var Movie = require('../models/movie');
 
-/* const ring = new Movie({ title: 'DUPA333' });
-ring.save(); */
-
+/* THREE ways of making requests */
+// 1. then/catch with promises
 exports.getMovies = (req, res) => {
   const movies = [];
   Movie.find()
@@ -11,16 +10,24 @@ exports.getMovies = (req, res) => {
     .catch(err => res.json(err));
 };
 
+// 2. callback
 exports.postMovie = (req, res) => {
-  Movie.create(req.body)
-    .then(saved => res.json(saved))
-    .catch(err => res.json(err));
+  Movie.create(req.body, (err, saved) => {
+    if (err) {
+      res.json(err);
+    }
+    res.json(saved);
+  });
 };
 
-exports.getMovie = (req, res) => {
-  Movie.findOne({ _id: req.params.id })
-    .then(found => res.json(found))
-    .catch(err => res.json(err));
+// 3. async/await
+exports.getMovie = async (req, res) => {
+  try {
+    const found = await Movie.findOne({ _id: req.params.id });
+    res.json(found);
+  } catch (error) {
+    res.json(error);
+  }
 };
 
 exports.putMovie = (req, res) => {
