@@ -15,7 +15,7 @@ var app = express();
 app.use(express.static(__dirname + "/views"));
 
 // db
-const dbName = 'moviesDb';
+const dbName = 'mustwatch';
 //dbTest.test(mongoose)
 mongoose.connect('mongodb://localhost:27017/' + dbName, {
   useNewUrlParser: true,
