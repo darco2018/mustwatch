@@ -7,16 +7,16 @@ var mongoose = require('mongoose');
 var dbTest = require("./helpers/dbTest")
 
 var indexRouter = require('./routes/index');
-var moviesRouter = require('./routes/movies');
+var movieRouter = require('./routes/movie');
 var app = express();
 
 // view engine setup
-//app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(__dirname + "/views"));
+
 
 // db
 const dbName = 'mustwatch';
-//dbTest.test(mongoose)
+// uncomment to test mongo
+// dbTest.test(mongoose)
 mongoose.connect('mongodb://localhost:27017/' + dbName, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/api/movies', moviesRouter);
+app.use('/api/movies', movieRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
