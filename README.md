@@ -32,6 +32,7 @@ $ git init
 - **remove express-generator code:**
   1. change usersRouter code to moviesRouter in app.js & /routers
   2. view: remove jade files from /views & package.json; change res.render("view", {data}) to res.json({"key": "value"}); start nodemon & check it's working
+  3. remove /views & /public folders - leave them if you plan to add frontend in the same project
 - **MONGO**
 - install mongo & mongo CLI on your machine
 - start mongo demon & mongo:
